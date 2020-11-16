@@ -1,0 +1,64 @@
+<div class="justify-content-center bg-white mx-4">
+  <h3 class="text-center text-info">Show Lead</h3>
+  <div class="mx-4">
+    <p>
+      <strong>Lead Name:</strong>
+      <%= @lead.name %>
+    </p>
+    <p>
+      <strong>Client Name:</strong>
+      <%= @lead.client_name %>
+    </p>
+    <p>
+      <strong>Client Email:</strong>
+      <%= @lead.client_email %>
+    </p>
+    <p>
+      <strong>Client Contact:</strong>
+      <%= @lead.client_contact %>
+    </p>
+    <p>
+      <strong>Client Address:</strong>
+      <%= @lead.client_address %>
+    </p>
+    <p>
+      <strong>Test Type Address:</strong>
+      <%= @lead.leadType %>
+    </p>
+    <p>
+      <strong>Is Sale:</strong>
+      <%= @lead.is_sale %>
+    </p>
+    <p>
+      <strong>Transition Date:</strong>
+      <%= @lead.transition_date %>
+    </p>
+    <%=lead_edit_button(@lead)%>
+    <%=lead_back_button%>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mx-4 py-2">
+        <%= form_with model: @comment, local: true, url: lead_comments_path(@lead.id) , class: "form " do |f| %>
+          <h2>Add Comment</h2>
+          <textarea tabindex="29" required rows="4" id="text" name="text" class="form-control border"></textarea>
+          <%= f.submit  "'Post comment'", class: "btn btn-info btn-md"  %>
+        <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mx-4 py-2">
+      <div class="p-2" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" href="#collapse-1">
+        <span>Show Comments</span><i class="fa fa-chevron-down servicedrop"></i>
+      </div>
+      <div id="collapse-1" class="collapse">
+        <% @lead.comments.each do |comment|%>
+          <div class="border m-2 p-2">
+            <h5>Comment By :<b> <%=comment.user.user_name%></b> on date : <%=comment.created_at%> </h5>
+            <span><%= comment.text%></span><br>
+            <%= link_to 'Destroy', lead_comment_path(@lead.id, comment.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%>
+          </div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

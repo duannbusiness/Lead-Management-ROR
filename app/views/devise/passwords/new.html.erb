@@ -1,0 +1,19 @@
+
+<h3 class="text-center text-info">Forgot your password?</h3>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, class: "form") do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="form-group">
+    <%= f.label :email, class: "text-info my-3" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Send me reset password instructions", class: "btn btn-info btn-md my-3" %>
+  </div>
+<% end %>
+<div class="row">
+  <%= render "devise/shared/links" %>
+</div>
+
+

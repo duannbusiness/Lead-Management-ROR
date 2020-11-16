@@ -1,3 +1,25 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :user
+
+  resources :leads do
+    resources :phases
+    resources :comments
+    match 'status', via: %i[get post]
+  end
+
+  resources :phases, only: %i[] do
+    resources :phase_users
+    resources :requests
+    resources :comments, controller: 'phase_comments'
+    get 'accept/:id', to: 'phases#accept', as: 'accept'
+    match 'reject/:id', to: 'phases#reject', via: %i[get post], as: 'reject'
+  end
+
+  resources :users do
+    resources :roles, controller: 'user_roles'
+  end
+
+  resources :roles
+
+  root 'home#index'
 end

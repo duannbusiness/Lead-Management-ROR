@@ -1,0 +1,13 @@
+<h2>Hello <%= @user.user_name %>,</h2>
+<p>you are request to add in a lead phase </p>
+<%lead = @phase.lead%>
+<p><b>Name : <%=lead.name%></b></p>
+<p><b>Lead Type : <%=lead.leadType%></b></p>
+<p><b>Client Name : <%=lead.client_name%></b></p>
+<p><b>Phase name : <%=@phase.name%></b></p>
+<p><b>Phase type : <%=@phase.phaseType%></b></p>
+<p><b>Phase Description : <%=@phase.phaseType%></b></p>
+<p><b>Phase Start Date : <%=@phase.start_date%></b></p>
+<p><b>Phase Due Date : <%=@phase.due_date%></b></p>
+<%= link_to 'if you want to add in lead than click me', phase_accept_url(@phase,@user)%>
+<%= link_to 'if you dont want to add in lead than click me', phase_reject_url(@phase.id,@user.id)%>

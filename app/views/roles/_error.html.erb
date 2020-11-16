@@ -1,0 +1,15 @@
+<% if role.errors.any? %>
+  <div class="bg-green">
+    <h2>
+      <%= I18n.t("errors.messages.not_saved",
+                 count: role.errors.count,
+                 resource: role.class.model_name.human.downcase)
+       %>
+    </h2>
+    <ul>
+      <% role.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

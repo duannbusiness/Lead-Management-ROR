@@ -1,0 +1,32 @@
+<div class="justify-content-center bg-white mx-4">
+  <h3 class="text-center text-info">Show Phase</h3>
+  <div class="mx-4">
+    <p>
+      <strong>Phase Name:</strong>
+      <%= @phase.name %>
+    </p>
+    <p>
+      <strong>Description:</strong>
+      <%= @phase.description %>
+    </p>
+    <p>
+      <strong>type:</strong>
+      <%= @phase.type %>
+    </p>
+    <p>
+      <strong>Status:</strong>
+      <%= @phase.status %>
+    </p>
+    <p>
+      <strong>Start date:</strong>
+      <%= @phase.start_date %>
+    </p>
+    <p>
+      <strong>Due Date:</strong>
+      <%= @phase.due_date %>
+    </p>
+    <%= link_to 'Edit', edit_lead_phase_path(@phase.lead_id,@phase.id), class: "btn btn-info" %>
+    <%= link_to 'Back', lead_phases_path(@phase.lead_id), class: "btn btn-info" %>
+  </div>
+</div>
+

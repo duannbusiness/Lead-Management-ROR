@@ -1,0 +1,28 @@
+<div class="row bg-white mx-4">
+  <div class="col-sm-12 text-center px-3">
+    <h1>Roles</h1>
+  </div>
+  <div class="col-sm-12 text-left m-3">
+    <%=role_create_button(@role)%>
+  </div>
+  <div class="col-sm-12 ">
+    <table class="table mx-auto">
+      <thead>
+        <tr class="p4">
+          <th scope="col">Name</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @role.each do |role| %>
+        <tr>
+          <td scope="row"><%= role.name %></td>
+          <td>
+            <%=role_delete_button(role)%>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

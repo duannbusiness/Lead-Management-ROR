@@ -1,0 +1,20 @@
+<div class="justify-content-center bg-white mx-4">
+  <h3 class="text-center text-info">Show Manager</h3>
+  <div class="mx-4">
+    <p>
+      <strong>Phase Name:</strong>
+      <%= @request.phase.name %>
+    </p>
+    <p>
+      <strong>Engineer Name:</strong>
+      <%= @request.user.user_name %>
+    </p>
+    <p>
+      <strong>Description:</strong>
+      <%= @request.description %>
+    </p>
+    <p>
+    <%= link_to 'Back', phase_phase_users_path(@request.phase_id), class: "btn btn-info" %>
+  </div>
+</div>
+

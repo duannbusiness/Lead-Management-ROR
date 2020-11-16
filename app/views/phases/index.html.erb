@@ -1,0 +1,43 @@
+<div class="row bg-white mx-4">
+  <div class="col-sm-12 text-center px-3">
+    <h1>Phases</h1>
+  </div>
+  <div class="col-sm-12 text-left m-3">
+  <%=create_button(@lead)%>
+  </div>
+  <div class="col-sm-12 ">
+    <table class="table mx-auto">
+      <thead>
+        <tr class="p4">
+          <th scope="col">Lead Name</th>
+          <th scope="col">Phase Name</th>
+          <th scope="col">Phase Type</th>
+          <th scope="col">Status</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">Due Date</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @phases.each do |phase| %>
+        <tr>
+          <td scope="row"><%= phase.lead.name %></td>
+          <td><%= phase.name %></td>
+          <td scope="row"><%= phase.phaseType %></td>
+          <td><%= phase.status %></td>
+          <td><%= phase.start_date %></td>
+          <td><%= phase.due_date %></td>
+          <td>
+            <%=link_to 'Show', lead_phase_path(phase.lead_id,phase.id),class: "btn btn-info"%>
+            <%=edit_button(phase)%>
+            <%=delete_button(phase)%>
+            <%= link_to 'Engineer', phase_phase_users_path(phase.id), class: "btn btn-info" %>
+            <%= link_to 'Manager', phase_requests_path(phase.id), class: "btn btn-info" %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%=lead_back_button%>
+  </div>
+</div>
