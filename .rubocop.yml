@@ -1,0 +1,46 @@
+require: 
+  - rubocop-performance
+  - rubocop-rails
+  # - rubocop-rspec # or 
+  - rubocop-minitest
+ 
+ 
+AllCops:
+  # Exclude auto-generated files by Rails
+  TargetRubyVersion: 2.6.6
+  TargetRailsVersion: 5.2
+  Exclude:
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
+    - 'vendor/bundle/**/*'
+    - 'bin/**/*'
+    - 'Gemfile.lock'
+    - 'Gemfile'
+    
+Metrics/LineLength:
+  Max: 120
+  
+Metrics/MethodLength:
+  Max: 23
+
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+    - spec/**/*
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*
+
+Style/Documentation:
+  Enabled: false
+Lint/RaiseException:
+  Enabled: false
+Lint/StructNewOverride:
+  Enabled: false
+Style/HashEachMethods:
+  Enabled: false
+Style/HashTransformKeys:
+  Enabled: false
+Style/HashTransformValues:
+  Enabled: false

@@ -1,0 +1,9 @@
+<div class="row justify-content-center bg-white mx-4">
+  <%= form_with model: @role, local: true, class: "form col-sm-6 " do |f| %>
+    <%= render 'error', role: @role %>
+    <h3 class="text-center text-info">Create Role</h3>
+    <%= f.label :name,'Role Name', class: "text-info my-1" %>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.submit  "Submit", class: "btn btn-info btn-md"  %>
+  <% end %>
+</div>

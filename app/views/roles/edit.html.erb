@@ -1,0 +1,19 @@
+<div class="row justify-content-center bg-white mx-4">
+  <%= form_with model: @lead, local: true, class: "form col-sm-6 " do |f| %>
+    <h3 class="text-center text-info">Edit Phase</h3>
+    <%= render 'error', lead: @lead %>
+    <%= f.label :name,'Lead Name', class: "text-info my-1" %>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.label :client_name, class: "text-info my-1" %>
+    <%= f.text_field :client_name, class: "form-control" %>
+    <%= f.label :client_email, class: "text-info my-1" %>
+    <%= f.text_field :client_email, class: "form-control" %>
+    <%= f.label :client_contact, class: "text-info my-1" %>
+    <%= f.text_field :client_contact, class: "form-control" %>
+    <%= f.label :client_address, class: "text-info my-1" %>
+    <%= f.text_area :client_address, class: "form-control" %>
+    <%= f.label :test_type, class: "text-info my-1" %>
+    <%= f.text_field :test_type, class: "form-control" %>
+    <%= f.submit  "Update", class: "btn btn-info btn-md"  %>
+  <% end %>
+</div>

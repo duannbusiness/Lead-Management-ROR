@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-12 mx-4 py-2">
+      <%= form_with model: @comment, local: true, url: phase_reject_url(@phase, @user), method: :post , class: "form " do |f| %>
+        <h3>Leave Comment Why you are not accepting this invitation</h3>
+        <textarea tabindex="29" required rows="4" id="text" name="text" class="form-control border"></textarea>
+        <%= f.submit  "'Post comment'", class: "btn btn-info btn-md"  %>
+      <% end %>
+  </div>
+</div>

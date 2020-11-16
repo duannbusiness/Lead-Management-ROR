@@ -1,0 +1,7 @@
+<div class="row justify-content-center bg-white mx-4">
+  <%= form_with(model: @phase, local: true, url: lead_phase_path(@phase.lead_id), :method => "patch", class: "form col-sm-6 ") do |f| %>
+    <%= render 'error', phase: @phase %>
+    <h3 class="text-center text-info">Update Phase</h3>
+    <%= render 'form', f: f %>
+  <% end %>
+</div>

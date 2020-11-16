@@ -1,0 +1,20 @@
+<div class="content">
+  <div class="row justify-content-center" >
+    <div class="col-md-6">
+      <div class="card card-profile">
+        <div class="card-avatar">
+          <%= image_tag @user.image, class: "img" %>
+        </div>
+          <div class="card-body">
+          <h4 class="card-title py-2"><b>User Name :</b><%=@user.user_name%></h4>
+          <h4 class="card-title py-2"><b>Email :</b><%=@user.email%></h4>
+          <h4 class="card-title py-2"><b>First Name :</b><%=@user.first_name%></h4>
+          <h4 class="card-title py-2"><b>Last Name :</b><%=@user.last_name%></h4>
+          <h4 class="card-title py-2"><b>Contact No :</b><%=@user.contact_no%></h4>
+          <p class="card-description py-2"><b class="text-dark"></b><%=@user.about%></p>
+          <%=user_edit_button(@user)%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

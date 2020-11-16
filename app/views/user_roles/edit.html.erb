@@ -1,0 +1,16 @@
+<div class="row justify-content-center bg-white mx-4">
+  <%= form_with(model: @phase, url: lead_phase_path(@phase.lead_id), :method => "patch") do |f| %>
+    <h3 class="text-center text-info">Update Phase</h3>
+    <%= f.label :name,'Phase Name', class: "text-info my-1" %>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.label :description, class: "text-info my-1" %>
+    <%= f.text_area :description, class: "form-control" %>
+    <%= f.label :user_id, class: "text-info my-1" %>
+    <%= f.text_field :user_id, class: "form-control" %>
+    <%= f.label :start_date, class: "text-info my-1" %>
+    <%= f.text_field :start_date, class: "form-control" %>
+    <%= f.label :due_date, class: "text-info my-1" %>
+    <%= f.text_field :due_date, class: "form-control" %>
+    <%= f.submit  "Submit", class: "btn btn-info btn-md"  %>
+  <% end %>
+</div>

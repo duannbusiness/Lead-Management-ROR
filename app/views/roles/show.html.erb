@@ -1,0 +1,36 @@
+<div class="justify-content-center bg-white mx-4">
+  <h3 class="text-center text-info">Show Lead</h3>
+  <div class="mx-4">
+    <p>
+      <strong>Lead Name:</strong>
+      <%= @lead.name %>
+    </p>
+    <p>
+      <strong>Client Name:</strong>
+      <%= @lead.client_name %>
+    </p>
+    <p>
+      <strong>Client Email:</strong>
+      <%= @lead.client_email %>
+    </p>
+    <p>
+      <strong>Client Contact:</strong>
+      <%= @lead.client_contact %>
+    </p>
+    <p>
+      <strong>Client Address:</strong>
+      <%= @lead.client_address %>
+    </p>
+    <p>
+      <strong>Test Type Address:</strong>
+      <%= @lead.test_type %>
+    </p>
+    <p>
+      <strong>Is Sale:</strong>
+      <%= @lead.is_sale %>
+    </p>
+    <%= link_to 'Edit', edit_lead_path(@lead), class: "btn btn-info" if current_user.has_role? :admin or current_user.id == @lead.user_id%>
+    <%= link_to 'Back', leads_path, class: "btn btn-info" %>
+  </div>
+</div>
+

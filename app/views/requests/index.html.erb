@@ -1,0 +1,36 @@
+<div class="row bg-white mx-4">
+  <div class="col-sm-12 text-center px-3">
+    <h1>Phase Manager</h1>
+  </div>
+  <div class="col-sm-12 text-left m-3">
+    <%=phase_manager_create_button(@phase)%>
+  </div>
+  <div class="col-sm-12 ">
+    <table class="table mx-auto">
+      <thead>
+        <tr class="p4">
+          <th scope="col">Phase Name</th>
+          <th scope="col">Manager Name</th>
+          <th scope="col">Description </th>
+          <th scope="col">Status </th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @request.each do |manager| %>
+        <tr>
+          <td scope="row"><%= manager.phase.name %>
+          <td><%= manager.user.user_name %></td>
+          <td><%= manager.description %></td>
+          <td><%= manager.status %></td>
+          <td>
+            <%=link_to 'Show', phase_request_path(@phase.id,manager.id),class: "btn btn-info"%>
+            <%=phase_manager_delete_button(@phase, manager)%>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%=phase_back_button(@phase)%>  
+  </div>
+</div>

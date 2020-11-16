@@ -1,0 +1,36 @@
+<div class="row bg-white mx-4">
+  <div class="col-sm-12 text-center px-3">
+    <h1>Phase Engineer</h1>
+  </div>
+  <div class="col-sm-12 text-left m-3">
+    <%=phase_user_create_button(@phase)%>
+  </div>
+  <div class="col-sm-12 ">
+    <table class="table mx-auto">
+      <thead>
+        <tr class="p4">
+          <th scope="col">Phase Name</th>
+          <th scope="col">Engineer Name</th>
+          <th scope="col">Description </th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @phase_user.each do |engineer| %>
+        <tr>
+          <td scope="row"><%= engineer.phase.name %>
+          <td><%= engineer.user.user_name %></td>
+          <td><%= engineer.description %></td>
+          <td>
+            <%=link_to 'Show', phase_phase_user_path(@phase.id,engineer.id),class: "btn btn-info"%>
+            <%=phase_user_delete_button(@phase, engineer)%>
+
+          </td>
+        </tr>
+        <% end %>
+        
+      </tbody>
+    </table>
+    <%=phase_back_button(@phase)%>  
+  </div>
+</div>
