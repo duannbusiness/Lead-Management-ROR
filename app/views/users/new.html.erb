@@ -16,12 +16,8 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"  %>
     </div>
       <%= f.label :image, class: "text-info my-3" %><br />
-      <%= f.file_field :image %>
+      <%= f.file_field :image, direct_upload: true %>
     <div class="form-group">
-      <%= f.label :user_name,"User Name", class: "text-info my-3" %><br />
-      <%= f.text_field :user_name, autofocus: true, class: "form-control"  %>
-    </div>
-        <div class="form-group">
       <%= f.label :user_name,"User Name", class: "text-info my-3" %><br />
       <%= f.text_field :user_name, autofocus: true, class: "form-control"  %>
     </div>

@@ -6,11 +6,11 @@ class RequestMailer < ApplicationMailer
   def registration_confirmation(user, phase)
     @phase = phase
     @user = user
-    mail(to: user.email, subject: 'Registered')
+    # mail(to: user.email, subject: 'Registered')
   end
 
   def user_registration(user)
     @user = user
-    mail(to: user.email, subject: 'Registered')
+    # mail(to: user.email, subject: 'Registered')
   end
 end

@@ -6,10 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(
-    email: 'admin@gmail.com',
-    encrypted_password: '123456'
-)
-Role.create(
-    name: 'admin'
-)
+Role.create(name: 'admin')
+Role.create(name: 'business_developer')
+Role.create(name: 'manager')
+Role.create(name: 'engineer')
+User.create(email: 'admi2n@gmail.com',
+            password: '123456',
+            first_name: 'admin',
+            last_name: 'admin',
+            user_name: 'super admin'
+        )
+user = User.first
+user.add_role :admin
+

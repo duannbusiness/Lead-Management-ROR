@@ -3,7 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-
+gem 'cloudinary', require: false
+gem 'activestorage-cloudinary-service'
+gem 'figaro'
 # pundit
 gem "pundit"
 # rolify gem
