@@ -10,7 +10,7 @@ Role.create(name: 'admin')
 Role.create(name: 'business_developer')
 Role.create(name: 'manager')
 Role.create(name: 'engineer')
-User.create(email: 'admi2n@gmail.com',
+User.create(email: 'admin@gmail.com',
             password: '123456',
             first_name: 'admin',
             last_name: 'admin',
@@ -18,4 +18,3 @@ User.create(email: 'admi2n@gmail.com',
         )
 user = User.first
 user.add_role :admin
-
