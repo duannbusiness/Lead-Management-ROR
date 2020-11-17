@@ -4,7 +4,7 @@
 class UserRolesController < ApplicationController
   before_action :set_user, only: %i[index new create destroy]
   before_action :check_authorization
-  
+
   def index
     @role = @user.roles
   end

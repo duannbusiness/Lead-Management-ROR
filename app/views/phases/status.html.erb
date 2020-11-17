@@ -1,0 +1,8 @@
+<div class="row justify-content-center bg-white mx-4">
+  <%= form_with model: @phase, url: phase_status_path, method: :post, local: true, class: "form col-sm-6 " do |f| %>
+    <h3 class="text-center text-info">Change Phase Status</h3>
+    <%= f.label :status,'Lead Type', class: "text-info my-1" %>
+    <%= f.select :status, ['pending', 'completed'], {include_blank: 'Select Phase Status'}, class: "form-control"  %>
+    <%= f.submit  "Submit", class: "btn btn-info btn-md"  %>
+  <% end %>
+</div>

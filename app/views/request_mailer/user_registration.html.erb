@@ -3,6 +3,7 @@
 <p> Your account have been successfully created.</p>
 <p> Email: <b><%= @user[:email] %></b></p>
 <p> Passwd: <b><%= @user[:password] %></b></p>
-<p><a href="http://localhost:3000">Visit for login</a> </p>
+<p><%= link_to 'Visit for login', root_url %> </p>
+<%= link_to 'Visit for login', root_url %>
 <br>
 <p> Thank You</p>

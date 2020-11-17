@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 2020_11_16_105940) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "user_id"
-    t.text "text"
+    t.bigint "user_id", null: false
+    t.text "text", null: false
     t.string "commentable_type"
     t.bigint "commentable_id"
     t.datetime "created_at", null: false
@@ -48,25 +48,25 @@ ActiveRecord::Schema.define(version: 2020_11_16_105940) do
   end
 
   create_table "leads", force: :cascade do |t|
-    t.string "name"
-    t.bigint "user_id"
-    t.string "client_name"
-    t.string "client_email"
-    t.string "client_contact"
-    t.string "client_address"
+    t.string "name", null: false
+    t.bigint "user_id", null: false
+    t.string "client_name", null: false
+    t.string "client_email", null: false
+    t.string "client_contact", null: false
+    t.string "client_address", null: false
     t.datetime "transition_date"
-    t.string "leadType"
-    t.boolean "is_sale"
+    t.string "leadType", null: false
+    t.boolean "is_sale", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_leads_on_user_id"
   end
 
   create_table "phase_users", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "phase_id"
-    t.text "description"
-    t.string "status", default: "pending"
+    t.bigint "user_id", null: false
+    t.bigint "phase_id", null: false
+    t.text "description", null: false
+    t.string "status", default: "pending", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["phase_id"], name: "index_phase_users_on_phase_id"
@@ -74,14 +74,14 @@ ActiveRecord::Schema.define(version: 2020_11_16_105940) do
   end
 
   create_table "phases", force: :cascade do |t|
-    t.string "name"
-    t.bigint "lead_id"
+    t.string "name", null: false
+    t.bigint "lead_id", null: false
     t.bigint "user_id"
-    t.text "description"
-    t.string "phaseType"
-    t.boolean "status"
-    t.datetime "start_date"
-    t.datetime "due_date"
+    t.text "description", null: false
+    t.string "phaseType", null: false
+    t.boolean "status", default: false
+    t.datetime "start_date", null: false
+    t.datetime "due_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lead_id"], name: "index_phases_on_lead_id"
@@ -89,10 +89,10 @@ ActiveRecord::Schema.define(version: 2020_11_16_105940) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.bigint "phase_id"
-    t.bigint "user_id"
-    t.string "status", default: "Pending"
-    t.text "description"
+    t.bigint "phase_id", null: false
+    t.bigint "user_id", null: false
+    t.string "status", default: "Pending", null: false
+    t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["phase_id"], name: "index_requests_on_phase_id"

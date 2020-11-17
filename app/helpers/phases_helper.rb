@@ -15,6 +15,10 @@ module PhasesHelper
     link_to 'Create New Phase', new_lead_phase_path(lead.id), class: 'btn btn-info' if policy(lead).new?
   end
 
+  def phase_status_change_button(phase)
+    link_to 'Change Status', phase_status_path(phase), class: 'btn btn-primary' if policy(phase).status?
+  end
+
   def phase_back_button(phase)
     link_to 'Back', lead_phases_path(phase.lead_id), class: 'btn btn-info'
   end

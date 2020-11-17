@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -10,11 +12,10 @@ Role.create(name: 'admin')
 Role.create(name: 'business_developer')
 Role.create(name: 'manager')
 Role.create(name: 'engineer')
-User.create(email: 'admi6[n@gmail.com',
+User.create(email: 'admin@gmail.com',
             password: '123456',
             first_name: 'admin',
             last_name: 'admin',
-            user_name: 'super admin'
-        )
+            user_name: 'super admin')
 user = User.first
 user.add_role :admin

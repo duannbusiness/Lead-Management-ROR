@@ -31,6 +31,7 @@
             <%=link_to 'Show', lead_phase_path(phase.lead_id,phase.id),class: "btn btn-info"%>
             <%=edit_button(phase)%>
             <%=delete_button(phase)%>
+            <%=phase_status_change_button(phase)%>
             <%= link_to 'Engineer', phase_phase_users_path(phase.id), class: "btn btn-info" %>
             <%= link_to 'Manager', phase_requests_path(phase.id), class: "btn btn-info" %>
           </td>

@@ -9,5 +9,5 @@
 <p><b>Phase Description : <%=@phase.phaseType%></b></p>
 <p><b>Phase Start Date : <%=@phase.start_date%></b></p>
 <p><b>Phase Due Date : <%=@phase.due_date%></b></p>
-<%= link_to 'if you want to add in lead than click me', phase_accept_url(@phase,@user)%>
-<%= link_to 'if you dont want to add in lead than click me', phase_reject_url(@phase.id,@user.id)%>
+<p><%= link_to 'if you want to add in lead than click me', phase_accept_url(@phase,@user)%></p>
+<p><%= link_to 'if you dont want to add in lead than click me', phase_reject_url(@phase.id,@user.id)%></p>

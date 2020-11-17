@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :user_signed_in?
-  # before_action :authenticate_user!, except: %i[accept]
+  before_action :authenticate_user!
   layout :set_layout
 
   private

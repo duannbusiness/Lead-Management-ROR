@@ -2,9 +2,9 @@
 
 # Phase controller for phase CRUD
 class PhasesController < ApplicationController
-  before_action :authenticate_user!, except: %i[accept reject]
-  before_action :set_lead, except: %i[accept reject]
-  before_action :set_phase, except: %i[index new create accept reject]
+  before_action :authenticate_user!, except: %i[accept reject status]
+  before_action :set_lead, except: %i[accept reject status]
+  before_action :set_phase, except: %i[index new create accept reject status]
   before_action :check_authorization, only: %i[new create destroy]
   layout 'login', only: %i[reject]
 
@@ -55,20 +55,31 @@ class PhasesController < ApplicationController
     redirect_to new_user_session_path, notice: 'You are successfully added in to a lead. Plase login for Confirmation'
   end
 
-  def reject
-    if request.get?
-      @phase = Phase.find(params[:phase_id])
-      @user = User.find_by(id: params[:id])
+  def status
+    @phase = Phase.find(params[:phase_id])
+    if request.post?
+      if @phase.update(phase_status_params)
+        redirect_to lead_phases_path(@phase.lead_id), notice: 'Phase status change successfully'
+      else
+        render 'status'
+      end
+    else
+      render 'status'
     end
+  end
+
+  def reject
+    @phase = Phase.find_by(id: params[:phase_id])
     if request.post?
       if User.exists?(id: params[:id])
-        @phase = Phase.find_by(id: params[:phase_id])
         @lead = @phase.lead
         @comment = @lead.comments.create(user_id: params[:id], text: params[:text])
         @request = @phase.requests.find_by(user_id: params[:id])
         @request.update(status: 'reject')
         redirect_to new_user_session_path, notice: 'Thanks'
       end
+    else
+      @user = User.find_by(id: params[:id])
     end
   end
 
@@ -76,6 +87,10 @@ class PhasesController < ApplicationController
 
   def phase_params
     params.require(:phase).permit(:lead_id, :name, :phaseType, :description, :start_date, :due_date)
+  end
+
+  def phase_status_params
+    params.require(:phase).permit(:status)
   end
 
   def phase_user_params

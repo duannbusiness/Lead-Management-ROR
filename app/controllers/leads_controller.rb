@@ -18,7 +18,6 @@ class LeadsController < ApplicationController
     @lead = Lead.new(lead_params)
     authorize @lead
     @lead.user = current_user
-
     if @lead.save
       redirect_to @lead, notice: 'Lead add successfully'
     else
@@ -46,7 +45,7 @@ class LeadsController < ApplicationController
   def status
     @lead = Lead.find(params[:lead_id])
     if request.post?
-      if @lead.update(is_sale: params[:lead], transition_date: Time.zone.now)
+      if @lead.update(is_sale: params[:lead][:is_sale], transition_date: Time.zone.now)
         redirect_to @lead, notice: 'Lead status change successfully'
       else
         render 'status'
