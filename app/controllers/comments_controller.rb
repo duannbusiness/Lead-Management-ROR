@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:notice] = 'Comment add successfully'
     else
-      flash[:error] = 'ERROR: Comment not add successfully'
+      flash[:error] = "ERROR: Comment not add successfully  #{@comment.errors.full_messages.to_sentence}"
     end
     redirect_to lead_path(@lead)
   end
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     if @comment.destroy
       flash[:notice] = 'Comment remove successfully'
     else
-      flash[:error] = 'ERROR: Comment not remove successfully'
+      flash[:error] = "ERROR: Comment not remove successfully #{@comment.errors.full_messages.to_sentence}"
     end
     redirect_to lead_path(@lead)
   end

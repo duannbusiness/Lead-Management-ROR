@@ -18,6 +18,7 @@ class UserRolesController < ApplicationController
     if @user.add_role role.name
       redirect_to user_roles_path(params[:user_id]), notice: 'User role add successfully'
     else
+      flash[:error] = "Assign role to a user is not successfully,  #{@user.errors.full_messages.to_sentence}"
       render 'new'
     end
   end
@@ -27,7 +28,7 @@ class UserRolesController < ApplicationController
     if @user.remove_role role.name
       flash[:notice] = 'Role remove successfully'
     else
-      flash[:error] = 'Role not remove successfully'
+      flash[:error] = "User role not remove successfully,  #{@user.errors.full_messages.to_sentence}"
     end
     redirect_to user_roles_path(params[:user_id])
   end

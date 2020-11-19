@@ -10,7 +10,6 @@ class PhaseUsersController < ApplicationController
   end
 
   def new
-    @users = User.with_role :engineer
     @phase_user = @phase.phase_users.new
   end
 
@@ -20,7 +19,7 @@ class PhaseUsersController < ApplicationController
     if @phase_user.save
       redirect_to phase_phase_users_path(@phase.id), notice: 'Engineer add successfully'
     else
-      @users = User.with_role :engineer
+      flash[:error] = "Engineer not create successfully  #{@engineer.errors.full_messages.to_sentence}"
       render 'new'
     end
   end
@@ -31,7 +30,7 @@ class PhaseUsersController < ApplicationController
     if @engineer.destroy
       flash[:notice] = 'Engineer remove successfully'
     else
-      flash[:error] = 'Engineer not remove successfully'
+      flash[:error] = "Engineer not remove successfully  #{@engineer.errors.full_messages.to_sentence}"
     end
     redirect_to phase_phase_users_path(params[:phase_id])
   end

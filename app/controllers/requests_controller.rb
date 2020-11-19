@@ -9,7 +9,6 @@ class RequestsController < ApplicationController
   end
 
   def new
-    @users = User.with_role :manager
     @request = @phase.requests.new
   end
 
@@ -20,7 +19,7 @@ class RequestsController < ApplicationController
       RequestMailer.phase_add_manager_invitation(@request.user, @phase).deliver_now
       redirect_to phase_requests_path(@phase.id), notice: 'invitation send successfully'
     else
-      @users = User.with_role :manager
+      flash[:error] = "Manager request  not create successfully,  #{@request.errors.full_messages.to_sentence}"
       render 'new'
     end
   end
@@ -34,7 +33,7 @@ class RequestsController < ApplicationController
     if @request.destroy
       flash[:notice] = 'Manager request remove successfully'
     else
-      flash[:error] = 'Manager request  not remove successfully'
+      flash[:error] = "Manager request  not remove successfully,  #{@request.errors.full_messages.to_sentence}"
     end
     redirect_to phase_requests_path(params[:phase_id])
   end

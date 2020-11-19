@@ -23,7 +23,13 @@ module UsersHelper
     link_to 'Role', user_roles_path(user.id), class: 'btn btn-info' if policy(user).index?
   end
 
-  def user_dropdown_option(users)
+  def manager_dropdown_option
+    users = User.with_role :manager
+    users.map { |u| [u.user_name, u.id] }
+  end
+
+  def engineer_dropdown_option
+    users = User.with_role :engineer
     users.map { |u| [u.user_name, u.id] }
   end
 end

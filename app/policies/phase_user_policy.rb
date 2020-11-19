@@ -2,10 +2,10 @@
 
 class PhaseUserPolicy < ApplicationPolicy
   def destroy?
-    user.has_role? :admin or  (user.has_role? :manager and record.user_id == user.id)
+    user.admin? or  (user.manager? and record.user_id == user.id)
   end
 
   def create?
-    user.has_role? :admin or  (user.has_role? :manager and record.user_id == user.id)
+    user.admin? or  (user.manager? and record.user_id == user.id)
   end
 end

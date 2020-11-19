@@ -21,6 +21,7 @@ class LeadsController < ApplicationController
     if @lead.save
       redirect_to @lead, notice: 'Lead add successfully'
     else
+      flash[:error] = "ERROR: Lead not create successfully, #{@lead.errors.full_messages.to_sentence}"
       render 'new'
     end
   end
@@ -31,6 +32,7 @@ class LeadsController < ApplicationController
     if @lead.update(lead_params)
       redirect_to @lead, notice: 'Lead update successfully'
     else
+      flash[:error] = "ERROR: Lead not update successfully, #{@lead.errors.full_messages.to_sentence}"
       render 'edit'
     end
   end
@@ -41,7 +43,7 @@ class LeadsController < ApplicationController
     if @lead.destroy!
       flash[:notice] = 'Lead remove successfully'
     else
-      flash[:error] = 'ERROR: Lead not remove successfully'
+      flash[:error] = "ERROR: Lead not remove successfully, #{@lead.errors.full_messages.to_sentence}"
     end
     redirect_to leads_path
   end

@@ -8,15 +8,13 @@ class ProjectsController < ApplicationController
     @project = Project.all
   end
 
-  def edit
-    @users = User.with_role :manager
-  end
+  def edit; end
 
   def update
     if @project.update(project_params)
       redirect_to @project, notice: 'project update successfully'
     else
-      @users = User.with_role :manager
+      flash[:error] = "ERROR: project not update successfully #{@project.errors.full_messages.to_sentence}"
       render 'edit'
     end
   end
@@ -27,7 +25,7 @@ class ProjectsController < ApplicationController
     if @project.destroy
       flash[:notice] = 'project remove successfully'
     else
-      flash[:error] = 'ERROR: project not remove successfully'
+      flash[:error] = "ERROR: project not remove successfully #{@project.errors.full_messages.to_sentence}"
     end
     redirect_to projects_path
   end

@@ -22,6 +22,7 @@ class UsersController < ApplicationController
       RequestMailer.user_registration(user_params).deliver_now
       redirect_to @user, notice: 'User add successfully with email notification'
     else
+      flash[:error] = "User not create successfully,  #{@user.errors.full_messages.to_sentence}"
       render 'new'
     end
   end
@@ -32,6 +33,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user, notice: 'user update successfully'
     else
+      flash[:error] = "User not update successfully,  #{@user.errors.full_messages.to_sentence}"
       render 'edit'
     end
   end
@@ -42,7 +44,7 @@ class UsersController < ApplicationController
     if @user.destroy
       flash[:notice] = 'User remove successfully'
     else
-      flash[:error] = 'User not remove successfully'
+      flash[:error] = "User not remove successfully,  #{@user.errors.full_messages.to_sentence}"
     end
     redirect_to users_path
   end

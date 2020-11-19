@@ -17,17 +17,17 @@ class RolesController < ApplicationController
     if @role.save
       redirect_to roles_path
     else
+      flash[:error] = "Role not create successfully,  #{@role.errors.full_messages.to_sentence}"
       render 'new'
     end
   end
 
   def destroy
     @role = Role.find(params[:id])
-    @role.destroy
     if @role.destroy
       flash[:notice] = 'Role remove successfully'
     else
-      flash[:error] = 'Role not remove successfully'
+      flash[:error] = "Role not remove successfully,  #{@role.errors.full_messages.to_sentence}"
     end
     redirect_to roles_path
   end

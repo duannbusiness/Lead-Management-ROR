@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  before_action :user_signed_in?
   before_action :authenticate_user!
   layout :set_layout
 

@@ -15,4 +15,20 @@ class User < ApplicationRecord
   has_many :phases, dependent: :destroy
   validates :first_name, :last_name, :user_name, presence: true
   validates :image, presence: true, blob: { content_type: ['image/jpg', 'image/jpeg', 'image/png'] }
+
+  def admin?
+    has_role? :admin
+  end
+
+  def engineer?
+    has_role? :engineer
+  end
+
+  def developer?
+    has_role? :business_developer
+  end
+
+  def manager?
+    has_role? :manager
+  end
 end

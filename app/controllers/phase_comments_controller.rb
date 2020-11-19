@@ -5,8 +5,12 @@ class PhaseCommentsController < ApplicationController
 
   def create
     @comment = @phase.comments.new(user_id: current_user.id, text: params[:text])
-    @comment.save!
-    redirect_to lead_phase_path(@phase.lead_id, @phase.id), notice: 'Comment add on a phase successfully'
+    if @comment.save
+      flash[:notice] = 'Comment add successfully'
+    else
+      flash[:error] = "ERROR: Comment not add successfully  #{@comment.errors.full_messages.to_sentence}"
+    end
+    redirect_to lead_phase_path(@phase.lead_id, @phase.id)
   end
 
   def destroy
@@ -15,7 +19,7 @@ class PhaseCommentsController < ApplicationController
     if @comment.destroy
       flash[:notice] = 'remove comment from a phase successfully'
     else
-      flash[:error] = 'remove comment from a phase unsuccessfull'
+      flash[:error] = "remove comment from a phase unsuccessfull #{@comment.errors.full_messages.to_sentence}"
     end
     redirect_to lead_phase_path(@phase.lead_id, @phase.id)
   end

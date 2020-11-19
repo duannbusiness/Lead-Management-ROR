@@ -21,6 +21,7 @@ class PhasesController < ApplicationController
     if @phase.save
       redirect_to lead_phase_path(params[:lead_id], @phase.id), notice: 'Phase add successfully'
     else
+      flash[:error] = "Phase not Create successfully  #{@phase.errors.full_messages.to_sentence}"
       render 'new'
     end
   end
@@ -34,6 +35,7 @@ class PhasesController < ApplicationController
     if @phase.update(phase_params)
       redirect_to lead_phases_path(params[:lead_id]), notice: 'Phase update successfully'
     else
+      flash[:error] = "Phase not update successfully  #{@phase.errors.full_messages.to_sentence}"
       render 'edit'
     end
   end
@@ -45,7 +47,7 @@ class PhasesController < ApplicationController
     if @phase.destroy
       flash[:notice] = 'Phase remove successfully'
     else
-      flash[:error] = 'Phase not remove successfully'
+      flash[:error] = "Phase not remove successfully #{@phase.errors.full_messages.to_sentence}"
     end
     redirect_to lead_phases_path(params[:lead_id])
   end
@@ -69,6 +71,7 @@ class PhasesController < ApplicationController
     if @phase.update(phase_status_params)
       redirect_to lead_phases_path(@phase.lead_id), notice: 'Phase status change successfully'
     else
+      flash[:error] = "Phase status not change successfully #{@phase.errors.full_messages.to_sentence}"
       render 'status'
     end
   end
