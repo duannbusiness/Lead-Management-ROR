@@ -85,7 +85,7 @@ class PhasesController < ApplicationController
 
     ActiveRecord::Base.transaction do
       @lead = @phase.lead
-      @comment = @phase.comments.create!(user_id: params[:id], text: params[:text])
+      @comment = @phase.comments.create(user_id: params[:id], text: params[:text])
       @request = @phase.requests.find_by(user_id: params[:id])
       @request.update!(status: 'reject')
     end

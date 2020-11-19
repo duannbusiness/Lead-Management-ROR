@@ -40,7 +40,7 @@ class LeadsController < ApplicationController
   def show; end
 
   def destroy
-    if @lead.destroy!
+    if @lead.destroy
       flash[:notice] = 'Lead remove successfully'
     else
       flash[:error] = "ERROR: Lead not remove successfully, #{@lead.errors.full_messages.to_sentence}"

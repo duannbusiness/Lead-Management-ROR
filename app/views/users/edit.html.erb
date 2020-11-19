@@ -8,7 +8,6 @@
         </div>
         <div class="card-body">
          <%= form_with(model: @user,local: true, url: user_path(@user.id), :method => "patch") do |f| %>
-            <%= render 'error', user: @user%>
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
