@@ -11,8 +11,13 @@ class PhaseCommentsController < ApplicationController
 
   def destroy
     @comment = @phase.comments.find(params[:id])
-    @comment.destroy!
-    redirect_to lead_phase_path(@phase.lead_id, @phase.id), notice: 'Remove comment from a phase successfully'
+    authorize @comment
+    if @comment.destroy
+      flash[:notice] = 'remove comment from a phase successfully'
+    else
+      flash[:error] = 'remove comment from a phase unsuccessfull'
+    end
+    redirect_to lead_phase_path(@phase.lead_id, @phase.id)
   end
 
   private

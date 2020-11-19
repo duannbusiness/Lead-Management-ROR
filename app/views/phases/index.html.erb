@@ -20,22 +20,22 @@
       </thead>
       <tbody>
         <% @phases.each do |phase| %>
-        <tr>
-          <td scope="row"><%= phase.lead.name %></td>
-          <td><%= phase.name %></td>
-          <td scope="row"><%= phase.phaseType %></td>
-          <td><%= phase.status %></td>
-          <td><%= phase.start_date %></td>
-          <td><%= phase.due_date %></td>
-          <td>
-            <%=link_to 'Show', lead_phase_path(phase.lead_id,phase.id),class: "btn btn-info"%>
-            <%=edit_button(phase)%>
-            <%=delete_button(phase)%>
-            <%=phase_status_change_button(phase)%>
-            <%= link_to 'Engineer', phase_phase_users_path(phase.id), class: "btn btn-info" %>
-            <%= link_to 'Manager', phase_requests_path(phase.id), class: "btn btn-info" %>
-          </td>
-        </tr>
+          <tr>
+            <td scope="row"><%= phase.lead.name %></td>
+            <td><%= phase.name %></td>
+            <td scope="row"><%= phase.phaseType %></td>
+            <td><%= phase.status %></td>
+            <td><%= phase.start_date %></td>
+            <td><%= phase.due_date %></td>
+            <td>
+              <%=link_to 'Show', lead_phase_path(phase.lead_id,phase.id),class: "btn btn-info"%>
+              <%=edit_button(phase)%>
+              <%=delete_button(phase)%>
+              <%=phase_status_change_button(phase)%>
+              <%= link_to 'Engineer', phase_phase_users_path(phase.id), class: "btn btn-info" %>
+              <%= link_to 'Manager', phase_requests_path(phase.id), class: "btn btn-info" %>
+            </td>
+          </tr>
         <% end %>
       </tbody>
     </table>

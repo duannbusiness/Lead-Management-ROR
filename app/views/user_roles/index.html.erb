@@ -14,12 +14,12 @@
       </thead>
       <tbody>
         <% @role.each do |role| %>
-        <tr>
-          <td scope="row"><%= role.name %></td>
-          <td>
-            <%=user_role_delete_button(@user, role)%>
-          </td>
-        </tr>
+          <tr>
+            <td scope="row"><%= role.name %></td>
+            <td>
+              <%=user_role_delete_button(@user, role)%>
+            </td>
+          </tr>
         <% end %>
       </tbody>
     </table>

@@ -6,9 +6,10 @@ module PhasesHelper
   end
 
   def delete_button(phase)
-    if policy(phase.lead).destroy?
-      link_to 'Destroy', lead_phase_path(phase.lead_id, phase.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
-    end
+    return unless policy(phase).destroy?
+
+    link_to 'Destroy', lead_phase_path(phase.lead_id, phase.id),
+            method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
   end
 
   def create_button(lead)

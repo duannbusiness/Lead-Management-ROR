@@ -6,9 +6,9 @@ module UsersHelper
   end
 
   def user_delete_button(user)
-    if policy(user).destroy?
-      link_to 'Destroy', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
-    end
+    return unless policy(user).destroy?
+
+    link_to 'Destroy', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
   end
 
   def user_create_button
@@ -21,5 +21,9 @@ module UsersHelper
 
   def user_role_button(user)
     link_to 'Role', user_roles_path(user.id), class: 'btn btn-info' if policy(user).index?
+  end
+
+  def user_dropdown_option(users)
+    users.map { |u| [u.user_name, u.id] }
   end
 end

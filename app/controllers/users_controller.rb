@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     authorize @user
     if @user.save
-      RequestMailer.user_registration(user_params).deliver
+      RequestMailer.user_registration(user_params).deliver_now
       redirect_to @user, notice: 'User add successfully with email notification'
     else
       render 'new'
@@ -39,8 +39,12 @@ class UsersController < ApplicationController
   def show; end
 
   def destroy
-    @user.destroy!
-    redirect_to users_path, notice: 'User remove successfully'
+    if @user.destroy
+      flash[:notice] = 'User remove successfully'
+    else
+      flash[:error] = 'User not remove successfully'
+    end
+    redirect_to users_path
   end
 
   private

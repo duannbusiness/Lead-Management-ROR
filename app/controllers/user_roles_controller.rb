@@ -24,8 +24,12 @@ class UserRolesController < ApplicationController
 
   def destroy
     role = Role.find(params[:id])
-    @user.remove_role role.name
-    redirect_to user_roles_path(params[:user_id]), notice: 'User role remove successfully'
+    if @user.remove_role role.name
+      flash[:notice] = 'Role remove successfully'
+    else
+      flash[:error] = 'Role not remove successfully'
+    end
+    redirect_to user_roles_path(params[:user_id])
   end
 
   private

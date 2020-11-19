@@ -3,5 +3,5 @@
 class PhaseUser < ApplicationRecord
   belongs_to :phase
   belongs_to :user
-  validates :user_id, :description, presence: true
+  validates :user_id, :phase_id, :description, presence: true
 end

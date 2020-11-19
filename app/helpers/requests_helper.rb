@@ -2,9 +2,10 @@
 
 module RequestsHelper
   def phase_manager_delete_button(phase, request)
-    if request_policy(phase).destroy?
-      link_to 'Remove ', phase_request_path(phase.id, request.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
-    end
+    return unless request_policy(phase).destroy?
+
+    link_to 'Remove ', phase_request_path(phase.id, request.id),
+            method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
   end
 
   def phase_manager_create_button(phase)

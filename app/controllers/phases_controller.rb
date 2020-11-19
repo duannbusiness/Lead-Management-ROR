@@ -5,7 +5,7 @@ class PhasesController < ApplicationController
   before_action :authenticate_user!, except: %i[accept reject status]
   before_action :set_lead, except: %i[accept reject status]
   before_action :set_phase, except: %i[index new create accept reject status]
-  before_action :check_authorization, only: %i[new create destroy]
+  before_action :check_authorization, only: %i[new create]
   layout 'login', only: %i[reject]
 
   def index
@@ -13,7 +13,7 @@ class PhasesController < ApplicationController
   end
 
   def new
-    @phase = @lead.phases.new
+    @phase = Phase.new
   end
 
   def create
@@ -41,28 +41,33 @@ class PhasesController < ApplicationController
   def show; end
 
   def destroy
-    @phase.destroy!
-    redirect_to lead_phases_path(params[:lead_id]), notice: 'Phase remove successfully'
+    authorize @phase
+    if @phase.destroy
+      flash[:notice] = 'Phase remove successfully'
+    else
+      flash[:error] = 'Phase not remove successfully'
+    end
+    redirect_to lead_phases_path(params[:lead_id])
   end
 
   def accept
     return unless User.exists?(id: params[:id])
 
     @phase = Phase.find_by(id: params[:phase_id])
-    @phase.update(user_id: params[:id])
-    @request = @phase.requests.find_by(user_id: params[:id])
-    @request.update(status: 'accept')
-    redirect_to new_user_session_path, notice: 'You are successfully added in to a lead. Plase login for Confirmation'
+    ActiveRecord::Base.transaction do
+      @phase.update!(user_id: params[:id])
+      @request = @phase.requests.find_by(user_id: params[:id])
+      @request.update!(status: 'accept')
+    end
+    redirect_to new_user_session_path, notice: 'You are successfully added in to a lead. Please login for Confirmation'
   end
 
   def status
     @phase = Phase.find(params[:phase_id])
-    if request.post?
-      if @phase.update(phase_status_params)
-        redirect_to lead_phases_path(@phase.lead_id), notice: 'Phase status change successfully'
-      else
-        render 'status'
-      end
+    return unless request.post?
+
+    if @phase.update(phase_status_params)
+      redirect_to lead_phases_path(@phase.lead_id), notice: 'Phase status change successfully'
     else
       render 'status'
     end
@@ -70,23 +75,24 @@ class PhasesController < ApplicationController
 
   def reject
     @phase = Phase.find_by(id: params[:phase_id])
-    if request.post?
-      if User.exists?(id: params[:id])
-        @lead = @phase.lead
-        @comment = @lead.comments.create(user_id: params[:id], text: params[:text])
-        @request = @phase.requests.find_by(user_id: params[:id])
-        @request.update(status: 'reject')
-        redirect_to new_user_session_path, notice: 'Thanks'
-      end
-    else
-      @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:id])
+    return unless request.post?
+
+    return unless User.exists?(id: params[:id])
+
+    ActiveRecord::Base.transaction do
+      @lead = @phase.lead
+      @comment = @phase.comments.create!(user_id: params[:id], text: params[:text])
+      @request = @phase.requests.find_by(user_id: params[:id])
+      @request.update!(status: 'reject')
     end
+    redirect_to new_user_session_path, notice: 'Thanks'
   end
 
   private
 
   def phase_params
-    params.require(:phase).permit(:lead_id, :name, :phaseType, :description, :start_date, :due_date)
+    params.require(:phase).permit(:name, :phaseType, :description, :start_date, :due_date)
   end
 
   def phase_status_params

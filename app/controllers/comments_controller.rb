@@ -5,14 +5,23 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @lead.comments.new(user_id: current_user.id, text: params[:text])
-    @comment.save!
-    redirect_to lead_path(@lead), notice: 'Comment add successfully'
+    if @comment.save
+      flash[:notice] = 'Comment add successfully'
+    else
+      flash[:error] = 'ERROR: Comment not add successfully'
+    end
+    redirect_to lead_path(@lead)
   end
 
   def destroy
-    @comment = @lead.comments.find(params[:id])
-    @comment.destroy!
-    redirect_to lead_path(@lead), notice: 'Comment delete successfully'
+    @comment = @lead.comments.find_by(id: params[:id])
+    authorize @comment
+    if @comment.destroy
+      flash[:notice] = 'Comment remove successfully'
+    else
+      flash[:error] = 'ERROR: Comment not remove successfully'
+    end
+    redirect_to lead_path(@lead)
   end
 
   private

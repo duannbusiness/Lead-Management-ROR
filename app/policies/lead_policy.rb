@@ -14,6 +14,6 @@ class LeadPolicy < ApplicationPolicy
   end
 
   def status?
-    user.has_role? :admin or  user.has_role? :business_developer
+    (user.has_role? :admin or user.has_role? :business_developer) and record.is_sale != 'sale'
   end
 end

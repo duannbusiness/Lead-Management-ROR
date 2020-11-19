@@ -2,6 +2,6 @@
   <%= form_with(model: @phase, local: true, url: lead_phases_path(@lead.id), :method => "post", class: "form col-sm-6 ") do |f| %>
     <%= render 'error', phase: @phase %>
     <h3 class="text-center text-info">Create Phase</h3>
-     <%= render 'form', f: f %>
+    <%= render 'form', f: f %>
   <% end %>
 </div>

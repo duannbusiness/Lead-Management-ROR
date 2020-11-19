@@ -23,7 +23,12 @@ class RolesController < ApplicationController
 
   def destroy
     @role = Role.find(params[:id])
-    @role.destroy!
+    @role.destroy
+    if @role.destroy
+      flash[:notice] = 'Role remove successfully'
+    else
+      flash[:error] = 'Role not remove successfully'
+    end
     redirect_to roles_path
   end
 

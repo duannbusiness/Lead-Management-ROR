@@ -11,21 +11,8 @@ class User < ApplicationRecord
   has_many :phase_users, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :comments, dependent: :destroy
-
+  has_many :projects, dependent: :destroy
+  has_many :phases, dependent: :destroy
   validates :first_name, :last_name, :user_name, presence: true
-  def admin?
-    user.has_role? :admin
-  end
-
-  def developer?
-    user.has_role? :business_developer
-  end
-
-  def manager?
-    user.has_role? :manager
-  end
-
-  def engineer?
-    user.has_role? :engineer
-  end
+  validates :image, presence: true, blob: { content_type: ['image/jpg', 'image/jpeg', 'image/png'] }
 end

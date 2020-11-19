@@ -6,13 +6,13 @@ module LeadsHelper
   end
 
   def lead_delete_button(lead)
-    if policy(lead).destroy?
-      link_to 'Destroy',
-              lead_path(lead),
-              method: :delete,
-              data: { confirm: 'Are you sure?' },
-              class: 'btn btn-danger'
-    end
+    return unless policy(lead).destroy?
+
+    link_to 'Destroy',
+            lead_path(lead),
+            method: :delete,
+            data: { confirm: 'Are you sure?' },
+            class: 'btn btn-danger'
   end
 
   def lead_create_button(lead)

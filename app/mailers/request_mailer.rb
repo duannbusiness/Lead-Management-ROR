@@ -3,7 +3,7 @@
 class RequestMailer < ApplicationMailer
   default from: 'saadullah2051@gmail.com'
 
-  def registration_confirmation(user, phase)
+  def phase_add_manager_invitation(user, phase)
     @phase = phase
     @user = user
     mail(to: user.email, subject: 'Registered')

@@ -1,0 +1,35 @@
+<div class="justify-content-center bg-white mx-4">
+  <h3 class="text-center text-info">Show project</h3>
+  <div class="mx-4">
+    <p>
+      <strong>Project Name:</strong>
+      <%= @project.name %>
+    </p>
+    <p>
+      <strong>Client Name:</strong>
+      <%= @project.lead.client_name %>
+    </p>
+    <p>
+      <strong>Client Email:</strong>
+      <%= @project.lead.client_email %>
+    </p>
+    <p>
+      <strong>Client Contact:</strong>
+      <%= @project.lead.client_contact %>
+    </p>
+    <p>
+      <strong>Client Address:</strong>
+      <%= @project.lead.client_address %>
+    </p>
+    <p>
+      <strong>Assign To:</strong>
+      <%= @project.user.user_name unless @project.user_id.nil?%>
+    </p>
+    <p>
+      <strong>Start Date:</strong>
+      <%= @project.created_at %>
+    </p>
+    <%=project_edit_button(@project) %>
+    <%=project_back_button%>
+  </div>
+</div>

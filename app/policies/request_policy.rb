@@ -6,6 +6,7 @@ class RequestPolicy < ApplicationPolicy
   end
 
   def create?
-    user.has_role? :admin or  (user.has_role? :business_developer and record.lead.user_id == user.id and record.user_id.nil?)
+    user.has_role? :admin or  (user.has_role? :business_developer and
+          record.lead.user_id == user.id and record.user_id.nil?)
   end
 end

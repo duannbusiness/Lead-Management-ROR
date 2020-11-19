@@ -2,13 +2,13 @@
 
 module PhaseUsersHelper
   def phase_user_delete_button(phase, engineer)
-    if phase_user_policy.destroy?
-      link_to 'Remove',
-              phase_phase_user_path(phase.id, engineer.id),
-              method: :delete,
-              data: { confirm: 'Are you sure?' },
-              class: 'btn btn-danger'
-    end
+    return unless phase_user_policy(phase).destroy?
+
+    link_to 'Remove',
+            phase_phase_user_path(phase.id, engineer.id),
+            method: :delete,
+            data: { confirm: 'Are you sure?' },
+            class: 'btn btn-danger'
   end
 
   def phase_user_create_button(phase)

@@ -14,6 +14,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'vendor/bundle/**/*'
     - 'bin/**/*'
+    - 'config/**/*'
     - 'Gemfile.lock'
     - 'Gemfile'
     
@@ -22,6 +23,9 @@ Metrics/LineLength:
   
 Metrics/MethodLength:
   Max: 23
+
+Metrics/AbcSize:
+  Max: 30
 
 Metrics/BlockLength:
   Exclude:
@@ -34,13 +38,4 @@ Lint/AmbiguousBlockAssociation:
 
 Style/Documentation:
   Enabled: false
-Lint/RaiseException:
-  Enabled: false
-Lint/StructNewOverride:
-  Enabled: false
-Style/HashEachMethods:
-  Enabled: false
-Style/HashTransformKeys:
-  Enabled: false
-Style/HashTransformValues:
-  Enabled: false
+  

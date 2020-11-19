@@ -18,16 +18,16 @@
       </thead>
       <tbody>
         <% @request.each do |manager| %>
-        <tr>
-          <td scope="row"><%= manager.phase.name %>
-          <td><%= manager.user.user_name %></td>
-          <td><%= manager.description %></td>
-          <td><%= manager.status %></td>
-          <td>
-            <%=link_to 'Show', phase_request_path(@phase.id,manager.id),class: "btn btn-info"%>
-            <%=phase_manager_delete_button(@phase, manager)%>
-          </td>
-        </tr>
+          <tr>
+            <td scope="row"><%= manager.phase.name %>
+            <td><%= manager.user.user_name %></td>
+            <td><%= manager.description %></td>
+            <td><%= manager.status %></td>
+            <td>
+              <%=link_to 'Show', phase_request_path(@phase.id,manager.id),class: "btn btn-info"%>
+              <%=phase_manager_delete_button(@phase, manager)%>
+            </td>
+          </tr>
         <% end %>
       </tbody>
     </table>

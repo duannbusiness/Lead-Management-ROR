@@ -2,7 +2,7 @@
   <%= form_with model: @lead, url: lead_status_path, method: :post, local: true, class: "form col-sm-6 " do |f| %>
     <h3 class="text-center text-info">Change Lead Status</h3>
     <%= f.label :is_sale,'Lead Type', class: "text-info my-1" %>
-    <%= f.select :is_sale, ['sale', 'not_sale'], {include_blank: 'Select Project Status'}, class: "form-control"  %>
+    <%= f.select :is_sale, ['sale', 'not_sale'], {include_blank: 'Select Lead Status'}, class: "form-control"  %>
     <%= f.submit  "Submit", class: "btn btn-info btn-md"  %>
   <% end %>
 </div>

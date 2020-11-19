@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
 
   resources :roles
+  resources :projects
 
   root 'home#index'
 end

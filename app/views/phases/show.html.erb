@@ -27,8 +27,8 @@
     </p>
     <%=edit_button(@phase)%>
     <%=phase_back_button(@phase)%>  
-    </div>
-    <div class="row">
+  </div>
+  <div class="row">
     <div class="col-md-8 mx-4 py-2">
         <%= form_with model: @comment, local: true, url: phase_comments_path(@phase.id) , class: "form " do |f| %>
           <h2>Add Comment</h2>
@@ -43,13 +43,13 @@
         <span>Show Comments</span><i class="fa fa-chevron-down servicedrop"></i>
       </div>
       <div id="collapse-1" class="collapse">
-      <% @phase.comments.each do |comment|%>
-        <div class="border mt-2 p-2">
-          <h5 class="mr-2">Comment By :<b> <%=comment.user.user_name%></b> on date : <%=comment.created_at%> </h5>
-          <span><%= comment.text%></span><br>
+        <% @phase.comments.each do |comment|%>
+          <div class="border mt-2 p-2">
+            <h5 class="mr-2">Comment By :<b> <%=comment.user.user_name%></b> on date : <%=comment.created_at%> </h5>
+            <span><%= comment.text%></span><br>
             <%= link_to 'Destroy', phase_comment_path(@phase.id, comment.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%>
-        </div>
-      <%end%>
+          </div>
+        <%end%>
       </div>
     </div>
   </div>

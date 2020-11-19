@@ -1,0 +1,9 @@
+<%= form_with model: @project, local: true, class: "form col-sm-6 " do |f| %>
+  <h3 class="text-center text-info">Edit Project</h3>
+  <%= render 'error', request: @project %>
+  <%= f.label :name,'Project Name', class: "text-info my-1" %>
+  <%= f.text_field :name, class: "form-control", required: true  %>
+  <%= f.label :user_id,'Engineer Name', class: "text-info my-1" %>
+  <%= f.select :user_id,@users.map {|u| [u.user_name, u.id]},{include_blank: 'Select Manager'}, required: true, class: "form-control"  %>
+  <%= f.submit  "Submit", class: "btn btn-info btn-md"  %>
+<% end %>

@@ -35,6 +35,12 @@
           <p>Roles</p>
         <% end %>
       </li>
+      <li class="nav-item <% if controller.controller_name == "projects" %>active<%end%> ">
+        <%= link_to projects_path, class: 'nav-link' do %>
+          <i class="material-icons">library_books</i>
+          <p>Projects</p>
+        <% end %>
+      </li>
     </ul>
   </div>
 </div>

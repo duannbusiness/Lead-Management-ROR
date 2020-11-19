@@ -38,18 +38,23 @@ class LeadsController < ApplicationController
   def show; end
 
   def destroy
-    @lead.destroy!
-    redirect_to leads_path, notice: 'Lead remove successfully'
+    if @lead.destroy!
+      flash[:notice] = 'Lead remove successfully'
+    else
+      flash[:error] = 'ERROR: Lead not remove successfully'
+    end
+    redirect_to leads_path
   end
 
   def status
     @lead = Lead.find(params[:lead_id])
-    if request.post?
-      if @lead.update(is_sale: params[:lead][:is_sale], transition_date: Time.zone.now)
-        redirect_to @lead, notice: 'Lead status change successfully'
-      else
-        render 'status'
-      end
+    authorize @lead
+    return unless request.post?
+
+    if @lead.update(is_sale: params[:lead][:is_sale], transition_date: Time.zone.now)
+      redirect_to @lead, notice: 'Lead status change successfully'
+    else
+      render 'status'
     end
   end
 

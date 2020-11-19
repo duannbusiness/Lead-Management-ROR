@@ -20,21 +20,21 @@
       </thead>
       <tbody>
         <% @lead.each do |lead| %>
-        <tr>
-          <td scope="row"><%= lead.name %></td>
-          <td><%= lead.client_name %></td>
-          <td scope="row"><%= lead.client_email %></td>
-          <td><%= lead.client_address %></td>
-          <td><%= lead.client_contact %></td>
-          <td><%= lead.leadType %></td>
-          <td>
-            <%=lead_edit_button(lead)%>
-            <%=link_to 'Show', lead_path(lead), class: "btn btn-info" %>
-            <%=lead_delete_button(lead)%>
-            <%=lead_status_change_button(lead)%>
-            <%= link_to 'Phase', lead_phases_path(lead), class: "btn btn-info" %>
-          </td>
-        </tr>
+          <tr>
+            <td scope="row"><%= lead.name %></td>
+            <td><%= lead.client_name %></td>
+            <td scope="row"><%= lead.client_email %></td>
+            <td><%= lead.client_address %></td>
+            <td><%= lead.client_contact %></td>
+            <td><%= lead.leadType %></td>
+            <td>
+              <%=lead_edit_button(lead)%>
+              <%=link_to 'Show', lead_path(lead), class: "btn btn-info" %>
+              <%=lead_delete_button(lead)%>
+              <%=lead_status_change_button(lead) %>
+              <%= link_to 'Phase', lead_phases_path(lead), class: "btn btn-info" %>
+            </td>
+          </tr>
         <% end %>
       </tbody>
     </table>

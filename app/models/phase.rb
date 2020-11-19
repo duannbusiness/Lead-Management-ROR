@@ -8,5 +8,5 @@ class Phase < ApplicationRecord
 
   validates :lead_id, :name, :phaseType, :description, :start_date, :due_date, presence: true
 
-  enum status: { pending: false, completed: true }
+  enum status: { pending: 0, completed: 1 }
 end

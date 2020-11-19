@@ -16,19 +16,18 @@
         </tr>
       </thead>
       <tbody>
-        <% @phase_user.each do |engineer| %>
-        <tr>
-          <td scope="row"><%= engineer.phase.name %>
-          <td><%= engineer.user.user_name %></td>
-          <td><%= engineer.description %></td>
-          <td>
-            <%=link_to 'Show', phase_phase_user_path(@phase.id,engineer.id),class: "btn btn-info"%>
-            <%=phase_user_delete_button(@phase, engineer)%>
+        <% @phase_users.each do |engineer| %>
+          <tr>
+            <td scope="row"><%= engineer.phase.name %>
+            <td><%= engineer.user.user_name %></td>
+            <td><%= engineer.description %></td>
+            <td>
+              <%=link_to 'Show', phase_phase_user_path(@phase.id,engineer.id),class: "btn btn-info"%>
+              <%=phase_user_delete_button(@phase, engineer)%>
 
-          </td>
-        </tr>
+            </td>
+          </tr>
         <% end %>
-        
       </tbody>
     </table>
     <%=phase_back_button(@phase)%>  

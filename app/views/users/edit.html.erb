@@ -13,19 +13,19 @@
               <div class="col-md-4">
                 <div class="form-group">
                 <%= f.label :user_name, class: "bmd-label-floating" %>
-                <%= f.text_field :user_name, class: "form-control" %>
+                <%= f.text_field :user_name, class: "form-control", required: true %>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <%= f.label :email, class: "bmd-label-floating" %>
-                  <%= f.text_field :email, class: "form-control" %>
+                  <%= f.email_field :email, class: "form-control", required: true %>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                 <%= f.label :contact_no,'Contact No', class: "bmd-label-floating" %>
-                <%= f.text_field :contact_no, class: "form-control" %>
+                <%= f.text_field :contact_no, class: "form-control", required: true %>
                 </div>
               </div>
             </div>
@@ -33,25 +33,25 @@
               <div class="col-md-6">
                 <div class="form-group">
                 <%= f.label :first_name,'First Name', class: "bmd-label-floating" %>
-                <%= f.text_field :first_name, class: "form-control" %>
+                <%= f.text_field :first_name, class: "form-control", required: true %>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                 <%= f.label :last_name, class: "bmd-label-floating" %>
-                <%= f.text_field :last_name, class: "form-control" %>
+                <%= f.text_field :last_name, class: "form-control", required: true %>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-4">
                 <%= f.label :image, class: "bmd-label-floatin" %><br />
-                <%= f.file_field :image, class: "form-control" %>
+                <%= f.file_field :image, class: "form-control",accept: "image/*" %>
               </div>
               <div class="col-md-8">
                 <div class="form-group">
                 <%= f.label :address, class: "bmd-label-floating", rows: "3" %>
-                <%= f.text_area :address, class: "form-control" %>
+                <%= f.text_area :address, class: "form-control"%>
                 </div>
               </div>
             </div>

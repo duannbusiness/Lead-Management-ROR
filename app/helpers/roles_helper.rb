@@ -2,9 +2,9 @@
 
 module RolesHelper
   def role_delete_button(role)
-    if policy(role).destroy?
-      link_to 'Remove Role', role_path(role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
-    end
+    return unless policy(role).destroy?
+
+    link_to 'Remove Role', role_path(role), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
   end
 
   def role_create_button(role)

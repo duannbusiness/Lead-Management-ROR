@@ -9,7 +9,7 @@ class RequestsController < ApplicationController
   end
 
   def new
-    @user = User.with_role :manager
+    @users = User.with_role :manager
     @request = @phase.requests.new
   end
 
@@ -17,10 +17,10 @@ class RequestsController < ApplicationController
     @request = @phase.requests.new(request_params)
 
     if @request.save
-      RequestMailer.registration_confirmation(@request.user, @phase).deliver
+      RequestMailer.phase_add_manager_invitation(@request.user, @phase).deliver_now
       redirect_to phase_requests_path(@phase.id), notice: 'invitation send successfully'
     else
-      @user = User.with_role :manager
+      @users = User.with_role :manager
       render 'new'
     end
   end
@@ -31,7 +31,11 @@ class RequestsController < ApplicationController
 
   def destroy
     @request = Request.find(params[:id])
-    @request.destroy!
+    if @request.destroy
+      flash[:notice] = 'Manager request remove successfully'
+    else
+      flash[:error] = 'Manager request  not remove successfully'
+    end
     redirect_to phase_requests_path(params[:phase_id])
   end
 

@@ -2,9 +2,10 @@
 
 module UserRolesHelper
   def user_role_delete_button(user, role)
-    if policy(role).destroy?
-      link_to 'Destroy', user_role_path(user.id, role.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
-    end
+    return unless policy(role).destroy?
+
+    link_to 'Destroy', user_role_path(user.id, role.id),
+            method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
   end
 
   def user_role_create_button(role)

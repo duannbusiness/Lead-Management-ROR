@@ -6,11 +6,11 @@ class PhaseUsersController < ApplicationController
   before_action :set_phase_user, except: %i[index new create]
 
   def index
-    @phase_user = @phase.phase_users
+    @phase_users = @phase.phase_users
   end
 
   def new
-    @user = User.with_role :engineer
+    @users = User.with_role :engineer
     @phase_user = @phase.phase_users.new
   end
 
@@ -20,7 +20,7 @@ class PhaseUsersController < ApplicationController
     if @phase_user.save
       redirect_to phase_phase_users_path(@phase.id), notice: 'Engineer add successfully'
     else
-      @user = User.with_role :engineer
+      @users = User.with_role :engineer
       render 'new'
     end
   end
@@ -28,8 +28,12 @@ class PhaseUsersController < ApplicationController
   def show; end
 
   def destroy
-    @engineer.destroy!
-    redirect_to phase_phase_users_path(params[:phase_id]), notice: 'Engineer remove successfully'
+    if @engineer.destroy
+      flash[:notice] = 'Engineer remove successfully'
+    else
+      flash[:error] = 'Engineer not remove successfully'
+    end
+    redirect_to phase_phase_users_path(params[:phase_id])
   end
 
   private
