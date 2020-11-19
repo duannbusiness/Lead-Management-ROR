@@ -66,7 +66,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "Demo_project_#{Rails.env}"
 
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { host: 'leadmanagement1.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'devsinc-lead-management.herokuapp.com' }
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
