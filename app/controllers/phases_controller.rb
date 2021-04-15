@@ -18,6 +18,7 @@ class PhasesController < ApplicationController
 
   def create
     @phase = @lead.phases.new(phase_params)
+    authorize @phase
     if @phase.save
       redirect_to lead_phase_path(params[:lead_id], @phase.id), notice: 'Phase add successfully'
     else
@@ -56,6 +57,7 @@ class PhasesController < ApplicationController
     return unless User.exists?(id: params[:id])
 
     @phase = Phase.find_by(id: params[:phase_id])
+    authorize @phase
     ActiveRecord::Base.transaction do
       @phase.update!(user_id: params[:id])
       @request = @phase.requests.find_by(user_id: params[:id])
@@ -66,6 +68,7 @@ class PhasesController < ApplicationController
 
   def status
     @phase = Phase.find(params[:phase_id])
+    authorize @phase
     return unless request.post?
 
     if @phase.update(phase_status_params)
@@ -78,6 +81,7 @@ class PhasesController < ApplicationController
 
   def reject
     @phase = Phase.find_by(id: params[:phase_id])
+    authorize @phase
     @user = User.find_by(id: params[:id])
     return unless request.post?
 
@@ -100,10 +104,6 @@ class PhasesController < ApplicationController
 
   def phase_status_params
     params.require(:phase).permit(:status)
-  end
-
-  def phase_user_params
-    params.require(:phase).permit(:phase_id, :user_id, :description)
   end
 
   def set_lead

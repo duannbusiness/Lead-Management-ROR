@@ -18,7 +18,7 @@ class Lead < ApplicationRecord
     if result.empty?
       [nil, { error: 'Sorry, Mangaer not found' }]
     else
-      Project.create(name: name, lead_id: id, user_id: result.first.id)
+      Project.create!(name: name, lead_id: id, user_id: result.first.id)
     end
   end
 end

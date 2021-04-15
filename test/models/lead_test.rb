@@ -2,8 +2,5 @@
 
 require 'test_helper'
 
-class LeadTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class LeadTest < ActiveSupport::TestCaseZ
 end

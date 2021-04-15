@@ -5,7 +5,7 @@ Rails [5.2.4.4]
 postgres [13.0 ]
 ##### 1. Check out the repository
 ```bash
-https://github.com/hafizmuhammadsaadullah/Lead-Management.git
+https://github.com/duannbusiness/Lead-Management-ROR.git
 ```
 ##### 2. Create database.yml file
 Copy the sample database.yml file and edit the database configuration as required.

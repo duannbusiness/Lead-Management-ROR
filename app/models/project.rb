@@ -5,5 +5,4 @@ class Project < ApplicationRecord
   belongs_to :user
 
   validates :name, :lead_id, :user_id, presence: true
-  validates :user_id, presence: true
 end

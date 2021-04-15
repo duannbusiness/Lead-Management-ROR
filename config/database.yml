@@ -14,3 +14,12 @@ production:
   pool: 5
   username: postgres
   password: 123
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: lead_management_test1
+  host: localhost
+  pool: 5
+  username: postgres
+  password: 123

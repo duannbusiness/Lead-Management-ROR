@@ -2,14 +2,14 @@
 
 class ProjectPolicy < ApplicationPolicy
   def update?
-    user.admin? or  (user.developer? and record.lead.user_id == user.id)
+    user.admin? ||  (user.developer? && record.lead.user_id == user.id)
   end
 
   def destroy?
-    user.admin? or  (user.developer? and record.lead.user_id == user.id)
+    user.admin? ||  (user.developer? && record.lead.user_id == user.id)
   end
 
   def create?
-    user.admin? or  user.developer?
+    user.admin? ||  user.developer?
   end
 end
